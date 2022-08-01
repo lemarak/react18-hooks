@@ -1,12 +1,38 @@
+import { useContext } from "react";
+import { todoDispatcherContext } from "../context/todoContext";
 import Button from "./Button";
 
-function TodoItem({
-  todo,
-  deleteTodo,
-  toggleTodoDone,
-  toggleTodoEdit,
-  selectTodo,
-}) {
+function TodoItem({ todo }) {
+  const dispatch = useContext(todoDispatcherContext);
+
+  const deleteTodo = () => {
+    dispatch({
+      type: "DELETE_TODO",
+      id: todo.id,
+    });
+  };
+
+  const toggleTodoDone = (id) => {
+    dispatch({
+      type: "TOGGLE_TODO_DONE",
+      id: todo.id,
+    });
+  };
+
+  const toggleTodoEdit = (id) => {
+    dispatch({
+      type: "TOGGLE_TODO_EDIT",
+      id: todo.id,
+    });
+  };
+
+  const selectTodo = (id) => {
+    dispatch({
+      type: "SELECT_TODO",
+      id: todo.id,
+    });
+  };
+
   return (
     <li
       onClick={selectTodo}
