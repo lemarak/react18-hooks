@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { todoStateContext } from "../context/todoContext";
 import EditTodo from "./EditTodo";
 import TodoItem from "./TodoItem";
 
-function TodoList({ todolist }) {
-  return todolist.length ? (
+function TodoList() {
+  const state = useContext(todoStateContext);
+
+  return state.todolist.length ? (
     <ul className="d-flex flex-column">
-      {todolist.map((t) =>
+      {state.todolist.map((t) =>
         t.edit ? (
           <EditTodo key={t.id} todo={t} />
         ) : (
